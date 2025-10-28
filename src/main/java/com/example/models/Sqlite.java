@@ -36,5 +36,9 @@ public class Sqlite implements Database{
     private void tryClose(Connection conn) throws SQLException {
         conn.close();
     }
+
+    //a close mondjuk nem kell, mert van saját close metódusa is.
+    //Az employeeSourceban az itt feliratnál van azzal a jobb
+    //és rövidebb megoldással.
     
 }
