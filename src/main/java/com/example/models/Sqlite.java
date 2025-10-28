@@ -17,10 +17,11 @@ public class Sqlite implements Database{
     }
 
 
-    public Connection tryConnect() throws SQLException {
+    private Connection tryConnect() throws SQLException {
         String url = "jdbc:sqlite:database.sqlite";
-        DriverManager.getConnection(url);
-        return null;
+
+        return DriverManager.getConnection(url);
+        
     }
 
     @Override
@@ -32,7 +33,7 @@ public class Sqlite implements Database{
         }
     }
 
-    public void tryClose(Connection conn) throws SQLException {
+    private void tryClose(Connection conn) throws SQLException {
         conn.close();
     }
     
