@@ -26,12 +26,20 @@ public class Main {
             "Tan Aranka",
             "Hatvan",
             new BigDecimal(397.5)
+            
         );    
         es.update(updateemp, 5);  
+        es.destroy(7);
 
         ArrayList<Employee> empList = es.index();
         empList.forEach((emp)->{
-            System.out.println(emp.getName());
+            System.out.printf(
+                "%d %s %s %s%n",
+                emp.getId(),
+                emp.getName(),
+                emp.getCity(),
+                emp.getSalary()
+            );
         });
     }
 }

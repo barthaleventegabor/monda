@@ -7,7 +7,7 @@ import java.sql.SQLException;
 import java.sql.Statement;
 import java.util.ArrayList;
 
-public class EmployeeSource implements EmployeeAccessible{
+public class EmployeeSource implements Accessible<Employee>{
 
     Database database;
 
@@ -101,10 +101,27 @@ public class EmployeeSource implements EmployeeAccessible{
         conn.close();
     }
 
+
     @Override
-    public void destroy(int id) {
-        // TODO Auto-generated method stub
-        throw new UnsupportedOperationException("Unimplemented method 'destroy'");
+    public void destroy(int id)  {
+       try {
+           tryDestroy(id);
+       } catch (SQLException e) {
+           System.err.println(e.getMessage());
+       } 
     }
+
     
+    private void tryDestroy(int id) throws SQLException {
+        Connection conn = database.connect();
+        String sql = "delete from employees where id = ?";
+        
+        PreparedStatement ps = conn.prepareStatement(sql);
+        ps.setInt(1, id);
+        ps.executeUpdate();
+        conn.close();
+        
+
+    
+    }
 }
